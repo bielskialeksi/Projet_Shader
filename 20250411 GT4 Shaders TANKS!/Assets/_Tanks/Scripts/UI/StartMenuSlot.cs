@@ -149,8 +149,8 @@ namespace Tanks.Complete
                     // then when we find the TankColor material
                     if (renderer.materials[j].name.Contains("TankColor"))
                     {
-                        // Set its color to the slot color
-                        renderer.materials[j].color = m_SlotColor;
+                        // change its color to the player color
+                        renderer.materials[j].SetColor("_BaseColor", m_SlotColor);
                     }
                 }
             }
