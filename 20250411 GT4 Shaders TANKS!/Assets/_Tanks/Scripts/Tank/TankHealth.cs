@@ -5,6 +5,7 @@ namespace Tanks.Complete
 {
     public class TankHealth : MonoBehaviour
     {
+        public Material Hit;                                // Material was played when it was hit
         public float m_StartingHealth = 100f;               // The amount of health each tank starts with.
         public Slider m_Slider;                             // The slider to represent how much health the tank currently has.
         public Image m_FillImage;                           // The image component of the slider.
@@ -54,7 +55,7 @@ namespace Tanks.Complete
 
                 // Change the UI elements appropriately.
                 SetHealthUI ();
-
+               
                 // If the current health is at or below zero and it has not yet been registered, call OnDeath.
                 if (m_CurrentHealth <= 0f && !m_Dead)
                 {
