@@ -9,7 +9,6 @@ namespace Tanks.Complete
         public GameObject DeadBody;
         public GameObject Body;
 
-
         public Material Hit;          // Material was played when it was hit
         public float m_StartingHealth = 100f;               // The amount of health each tank starts with.
         public Slider m_Slider;                             // The slider to represent how much health the tank currently has.
@@ -156,6 +155,8 @@ namespace Tanks.Complete
             m_Dead = true;
             Instantiate(DeadBody, transform.position, Quaternion.identity);
             // Turn the tank off.
+            Camera maCamera = Camera.main;
+            maCamera.GetComponent<CameraShakeEffect>().TriggerShake(5f, 20f); // shake avec intensité et durée
             gameObject.SetActive (false);
         }
         private IEnumerator TakeDamage()
