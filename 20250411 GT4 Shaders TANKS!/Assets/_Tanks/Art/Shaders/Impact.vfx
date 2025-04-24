@@ -130,10 +130,10 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: -0
+    x: 0
     y: -182
-    width: 4225
-    height: 2478
+    width: 4224
+    height: 2462
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -194,7 +194,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.0,"g":0.052549898624420169,"b":0.7490196228027344,"a":1.0}'
+      m_SerializableObject: '{"r":0.7490196228027344,"g":0.0,"b":0.032305870205163959,"a":1.0}'
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -1599,7 +1599,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":0.4088050127029419,"y":0.14012491703033448,"z":0.3409787714481354}'
+      m_SerializableObject: '{"x":0.6226415038108826,"y":0.12933775782585145,"z":0.0616767518222332}'
     m_Space: 2147483647
   m_Property:
     name: Color
@@ -5822,7 +5822,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":0.11083700507879257,"y":0.010630483739078045,"z":0.13522011041641236}'
+      m_SerializableObject: '{"x":0.5377358198165894,"y":0.012682447209954262,"z":0.027948450297117235}'
     m_Space: 2147483647
   m_Property:
     name: Color
@@ -7700,7 +7700,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.0,"g":0.052549898624420169,"b":0.7490196228027344,"a":1.0}'
+      m_SerializableObject: '{"r":0.7490196228027344,"g":0.0,"b":0.032305870205163959,"a":1.0}'
     m_Space: 2147483647
   m_Property:
     name: o
