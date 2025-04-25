@@ -1,10 +1,15 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Tanks.Complete
 {
     public class TankHealth : MonoBehaviour
     {
+        public GameObject DeadBody;
+        public GameObject Body;
+
+        public Material Hit;          // Material was played when it was hit
         public float m_StartingHealth = 100f;               // The amount of health each tank starts with.
         public Slider m_Slider;                             // The slider to represent how much health the tank currently has.
         public Image m_FillImage;                           // The image component of the slider.
@@ -55,6 +60,21 @@ namespace Tanks.Complete
                 // Change the UI elements appropriately.
                 SetHealthUI ();
 
+                MeshRenderer[] renderers = Body.GetComponentsInChildren<MeshRenderer>();
+                for (int i = 0; i < renderers.Length; i++)
+                {
+                    var renderer = renderers[i];
+                    for (int j = 0; j < renderer.materials.Length; ++j)
+                    {
+                        // If the material is the tank color one...
+                        if (renderer.materials[j].name.Contains("TankColor"))
+                        {
+                            // change its color to the player color
+                            renderer.materials[j].SetFloat("_Activate", 1);
+                        }
+                    }
+                }
+                StartCoroutine(TakeDamage());
                 // If the current health is at or below zero and it has not yet been registered, call OnDeath.
                 if (m_CurrentHealth <= 0f && !m_Dead)
                 {
@@ -117,11 +137,47 @@ namespace Tanks.Complete
 
         private void OnDeath ()
         {
+            MeshRenderer[] renderers = Body.GetComponentsInChildren<MeshRenderer>();
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                var renderer = renderers[i];
+                for (int j = 0; j < renderer.materials.Length; ++j)
+                {
+                    // If the material is the tank color one...
+                    if (renderer.materials[j].name.Contains("TankColor"))
+                    {
+                        // change its color to the player color
+                        renderer.materials[j].SetFloat("_Activate", 0);
+                    }
+                }
+            }
             // Set the flag so that this function is only called once.
             m_Dead = true;
-
+            Instantiate(DeadBody, transform.position, Quaternion.identity);
             // Turn the tank off.
+            Camera maCamera = Camera.main;
+            maCamera.GetComponent<CameraShakeEffect>().TriggerShake(5f, 20f); // shake avec intensité et durée
             gameObject.SetActive (false);
         }
+        private IEnumerator TakeDamage()
+        {
+            yield return new WaitForSeconds(5f); // attend 2 secondes
+            MeshRenderer[] renderers = Body.GetComponentsInChildren<MeshRenderer>();
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                var renderer = renderers[i];
+                for (int j = 0; j < renderer.materials.Length; ++j)
+                {
+                    // If the material is the tank color one...
+                    if (renderer.materials[j].name.Contains("TankColor"))
+                    {
+                        // change its color to the player color
+                        renderer.materials[j].SetFloat("_Activate", 0);
+                    }
+                }
+            }
+        }
     }
+
+
 }

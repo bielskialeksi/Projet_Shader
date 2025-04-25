@@ -80,7 +80,7 @@ namespace Tanks.Complete
                     if (renderer.materials[j].name.Contains("TankColor"))
                     {
                         // change its color to the player color
-                        renderer.materials[j].color = m_PlayerColor;
+                        renderer.materials[j].SetColor("_BaseColor", m_PlayerColor);
                     }
                 }
             }
