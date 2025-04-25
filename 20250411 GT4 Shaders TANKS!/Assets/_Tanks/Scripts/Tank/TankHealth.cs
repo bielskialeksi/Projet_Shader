@@ -157,8 +157,7 @@ namespace Tanks.Complete
             m_Dead = true;
             Instantiate(DeadBody, transform.position, Quaternion.identity);
             // Turn the tank off.
-            Camera maCamera = Camera.main;
-            maCamera.GetComponent<CameraShakeEffect>().TriggerShake(5f, 20f); // shake avec intensité et durée
+            
             gameObject.SetActive (false);
         }
         private IEnumerator TakeDamage()

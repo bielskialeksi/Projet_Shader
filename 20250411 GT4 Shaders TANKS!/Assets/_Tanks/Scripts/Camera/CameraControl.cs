@@ -38,14 +38,11 @@ namespace Tanks.Complete
 
         private void FixedUpdate ()
         {
-            if (!GetComponentInChildren<CameraShakeEffect>().IsShake)
-            {
-                // Move the camera towards a desired position.
+            // Move the camera towards a desired position.
                 Move();
 
                 // Change the size of the camera based.
                 Zoom();
-            }
         }
 
 
