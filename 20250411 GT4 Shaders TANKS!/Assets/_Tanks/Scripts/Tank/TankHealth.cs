@@ -8,6 +8,7 @@ namespace Tanks.Complete
     {
         public GameObject DeadBody;
         public GameObject Body;
+        public GameObject appear;
 
         public Material Hit;          // Material was played when it was hit
         public float m_StartingHealth = 100f;               // The amount of health each tank starts with.
@@ -29,6 +30,7 @@ namespace Tanks.Complete
         {
             // Set the slider max value to the max health the tank can have
             m_Slider.maxValue = m_StartingHealth;
+            Instantiate(appear, new Vector3(transform.position.x, transform.position.y+3, transform.position.z), Quaternion.identity);
         }
 
         private void OnDestroy()
