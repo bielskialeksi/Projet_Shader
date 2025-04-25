@@ -47,28 +47,28 @@ Shader "Custom/WaveVertex"
 
             v2f vert (appdata v)
             {
-                 v2f o;
+                v2f o;
 
-                // Position monde (pour pouvoir faire l'effet basé sur distance)
+                // Position monde
                 float3 worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 
-                // Calculer la position relative au centre (assume que le centre est en (0,0,0))
-                float2 centerOffset = worldPos.xz; // XZ pour un plane à l’horizontale
+                // Coordonnées de bruit
+                float2 noiseUV = v.uv * _Scale;
+                float noise = tex2Dlod(_NoiseTex, float4(noiseUV, 0, 0)).r;
 
-                float distToCenter = length(centerOffset);
-
-                // Générer l'onde en fonction de la distance
-               float wave = sin(((worldPos.x + worldPos.z) - _Time.y * _Speed) * 4.0);
-                float noise = tex2Dlod(_NoiseTex, float4(v.uv * _Scale, 0, 0)).r;
-
+                // Générer deux vagues combinées (diagonale + bruit)
+                float waveX = sin((worldPos.x + noise * 5.0 - _Time.y * _Speed) * 4.0);
+                float waveZ = sin((worldPos.z + noise * 5.0 - _Time.y * _Speed) * 4.0);
+                float wave = (waveX + waveZ) * 0.5;
 
                 // Appliquer la déformation
-                v.vertex.y += wave * _Amplitude * noise;
+                v.vertex.y += wave * _Amplitude;
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 return o;
             }
+
 
 
             fixed4 frag(v2f i) : SV_Target
