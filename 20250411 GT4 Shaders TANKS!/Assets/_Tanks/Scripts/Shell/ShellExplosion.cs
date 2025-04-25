@@ -12,6 +12,8 @@ namespace Tanks.Complete
         [HideInInspector] public float m_ExplosionForce = 1000f;              // The amount of force added to a tank at the centre of the explosion.
         [HideInInspector] public float m_ExplosionRadius = 5f;                // The maximum distance away from the explosion tanks can be and are still affected.
 
+        public GameObject impactVFXPrefab;
+
 
         private void Start ()
         {
@@ -52,8 +54,19 @@ namespace Tanks.Complete
                 targetHealth.TakeDamage (damage);
             }
 
+            // Ajout du VFX d’impact ici
+            if (impactVFXPrefab != null)
+            {
+                GameObject vfx = Instantiate(impactVFXPrefab, transform.position, Quaternion.identity);
+                //Destroy(vfx, 2f);
+            }
+
+            // Détruire la balle
+            Destroy(gameObject);
+
+
             // Destroy the shell.
-            Destroy (gameObject);
+            Destroy(gameObject);
         }
 
 
