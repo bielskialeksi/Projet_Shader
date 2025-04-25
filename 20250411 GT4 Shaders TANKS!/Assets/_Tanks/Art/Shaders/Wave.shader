@@ -58,8 +58,9 @@ Shader "Custom/WaveVertex"
                 float distToCenter = length(centerOffset);
 
                 // Générer l'onde en fonction de la distance
-                float wave = sin((distToCenter - _Time.y * _Speed) * 10.0); // "10.0" = fréquence
+               float wave = sin(((worldPos.x + worldPos.z) - _Time.y * _Speed) * 4.0);
                 float noise = tex2Dlod(_NoiseTex, float4(v.uv * _Scale, 0, 0)).r;
+
 
                 // Appliquer la déformation
                 v.vertex.y += wave * _Amplitude * noise;
@@ -73,7 +74,7 @@ Shader "Custom/WaveVertex"
             fixed4 frag(v2f i) : SV_Target
             {
                 fixed4 col = tex2D(_MainTex, i.uv) * _Color;
-                col.a *= 0.5; // Ex: réduire l'opacité à 50%
+                col.a *= 1; // Ex: réduire l'opacité à 50%
                 return col;
             }
             ENDCG
